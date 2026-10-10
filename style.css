@@ -1,17 +1,23 @@
-:root {
-  --cream: #f2eee5;
-  --paper: #e8e1d4;
-  --black: #171717;            
-  --red: #8f3028;
-  --orange: #b87935;
-  --gray: #6e6a63;
-  --white: #faf8f3;
+:root {   (représente la racine du document HTML.)
+
+    --cream: #f2eee5;
+    --paper: #e8e1d4;
+    --black: #171717;            
+    --red: #8f3028;
+    --orange: #b87935;
+    --gray: #6e6a63;
+    --white: #faf8f3;
+    
+    (--cream,--paper sont des variables CSS.L'intérêt est de 
+    pouvoir changer une couleur une seule fois et de la retrouver 
+    partout où elle est utilisée.)
 
 }
-* {  
-		margin: 0;   
+* {  ( * Tous les éléments HTML.)
+
+		margin: 0;   (supprime les marges par défaut et les espacements intérieurs par défaut.)
 		padding: 0;
-		box-sizing: border-box; 
+		box-sizing: border-box; (permet de mieux contrôler la taille réelle des éléments.)
 	}
 html { /* La balise html représente toute la page web. */
     scroll-behavior: smooth; /* Le défilement devient doux et animé quand on clique sur un lien interne (ex. vers #contact), au lieu d'un saut brutal. */
@@ -31,7 +37,8 @@ body { /* La balise body représente tout le contenu visible de la page. */
 
     line-height: 1.6; /* Hauteur des lignes : 1,6 fois la taille de la police. Un nombre sans unité est un multiplicateur. Le texte est plus aéré et plus lisible. */
 
-	h1, /* La virgule permet d'appliquer la même règle à plusieurs éléments à la fois. */
+}
+h1, /* La virgule permet d'appliquer la même règle à plusieurs éléments à la fois. */
 h2, /* h1, h2 et h3 sont les titres de niveau 1, 2 et 3. */
 h3 {
 
@@ -51,7 +58,6 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     color: inherit; /* inherit = « prends la même valeur que l'élément parent ». Le lien garde la couleur du texte qui l'entoure. */
 
     text-decoration: none; /* Supprime le soulignement par défaut des liens. */
-
 }
 .navbar { /* Le point (.) cible tous les éléments qui ont class="navbar" dans le HTML. */
 
@@ -145,7 +151,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     width: 100%; /* La ligne passe à toute la largeur du lien. Grâce à la transition, elle se dessine progressivement de gauche à droite. */
 
 }
-.hero { /* Le hero est la grande zone d'accueil : la première chose que l'on voit en arrivant sur la page. */
+   .hero { /* Le hero est la grande zone d'accueil : la première chose que l'on voit en arrivant sur la page. */
 
     min-height: 100vh; /* Hauteur minimale de la section. vh = « viewport height » (hauteur de la fenêtre). 100vh = 100 % de la hauteur de l'écran : le hero remplit au moins tout l'écran. */
 
@@ -294,7 +300,156 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     color: var(--gray); /* Texte gris. */
 
 }
-.section-number { /* Une classe réutilisable : on écrit le style une seule fois, puis on l'applique à plusieurs endroits du HTML avec class="section-number". */
+   .hero { /* Le hero est la grande zone d'accueil : la première chose que l'on voit en arrivant sur la page. */
+
+    min-height: 100vh; /* Hauteur minimale de la section. vh = « viewport height » (hauteur de la fenêtre). 100vh = 100 % de la hauteur de l'écran : le hero remplit au moins tout l'écran. */
+
+    padding:
+        150px /* Haut : espace pour laisser de la place à la navbar, qui flotte par-dessus. */
+        6% /* Gauche et droite : 6 % de la largeur. */
+        80px; /* Bas : 80 pixels. Avec trois valeurs : haut, côtés, bas. */
+
+    display: grid; /* CSS Grid : un système de mise en page en colonnes et en lignes, comme un tableau. S'applique au parent : ses enfants directs se placent dans les cases de la grille. */
+
+    grid-template-columns:
+        1fr /* Première colonne : 1 part de l'espace disponible. fr = « fraction ». */
+        0.85fr; /* Deuxième colonne : 0,85 part, donc un peu plus étroite que la première. */
+
+    gap: 80px; /* Espace de 80 pixels entre les deux colonnes. */
+
+    align-items: center; /* Centre le contenu verticalement dans chaque case de la grille. */
+
+}
+
+
+.hero-content { /* Le bloc de texte du hero (colonne de gauche). */
+
+    max-width: 650px; /* Largeur maximale : le bloc ne dépasse jamais 650 pixels, même sur un très grand écran. */
+
+}
+
+
+.small-label { /* La petite étiquette placée au-dessus du titre. */
+
+    color: var(--red); /* Texte rouge, avec la variable définie dans :root. */
+
+    font-size: 12px; /* Très petit texte. */
+
+    letter-spacing: 2px; /* Espace les lettres pour un style aéré. */
+
+    text-transform: uppercase; /* Affiche le texte en majuscules. */
+
+    margin-bottom: 30px; /* Marge extérieure : 30 pixels d'espace sous l'étiquette. */
+
+}
+
+
+.hero h1 { /* Le grand titre, uniquement celui qui se trouve dans .hero. */
+
+    font-size:
+        clamp( /* clamp(minimum, idéal, maximum) : une taille adaptative qui ne sort jamais des limites. */
+            65px, /* Minimum : le titre ne descend pas sous 65 pixels. */
+            8vw, /* Idéal : 8 % de la largeur de la fenêtre. vw = « viewport width ». Le titre grandit avec l'écran. */
+            125px /* Maximum : le titre ne dépasse pas 125 pixels. */
+        );
+
+    line-height: 0.88; /* Interligne très serré : 0,88 fois la taille de la police. */
+
+    font-weight: 400; /* Poids de police « normal ». Par défaut, un h1 est en gras. */
+
+    letter-spacing: -5px; /* Rapproche fortement les lettres, pour un effet de grand titre élégant. */
+
+    margin-bottom: 40px; /* 40 pixels d'espace sous le titre. */
+
+}
+
+
+.hero h1 em { /* Les mots en <em> à l'intérieur du titre du hero. */
+
+    color: var(--red); /* Le mot mis en valeur devient rouge. */
+
+}
+
+
+.hero-description { /* Le paragraphe de présentation sous le titre. */
+
+    max-width: 500px; /* Limite la largeur pour éviter des lignes de texte trop longues, plus difficiles à lire. */
+
+    color: var(--gray); /* Texte gris, moins marqué que le titre. */
+
+    font-size: 17px; /* Taille légèrement plus grande qu'un texte standard. */
+
+    margin-bottom: 40px; /* 40 pixels d'espace sous le paragraphe. */
+
+}
+
+
+.button { /* Le bouton (ou lien) d'action. */
+
+    display: inline-flex; /* Comme flex, mais « en ligne » : le bouton ne prend que la largeur de son contenu, au lieu de remplir toute la ligne. */
+
+    align-items: center; /* Centre verticalement le texte et la flèche. */
+
+    gap: 25px; /* Espace de 25 pixels entre le texte et la flèche. */
+
+    padding: 15px 20px; /* Espace intérieur : 15px en haut et en bas, 20px à gauche et à droite. */
+
+    border-bottom: 1px solid var(--black); /* Un seul trait sous le bouton. Une bordure se décrit avec : épaisseur (1px), style (solid = trait plein) et couleur. */
+
+    font-size: 13px; /* Petite taille de texte. */
+
+    text-transform: uppercase; /* Texte en majuscules. */
+
+    letter-spacing: 1px; /* Lettres légèrement espacées. */
+
+}
+
+
+.button span { /* Le <span> à l'intérieur du bouton (probablement la flèche). */
+
+    font-size: 20px; /* Agrandit la flèche par rapport au texte du bouton. */
+
+}
+
+
+.hero-image { /* Le bloc de l'image (colonne de droite). */
+
+    position: relative; /* L'élément reste à sa place, mais devient un point de repère pour d'éventuels éléments positionnés en absolute à l'intérieur. */
+
+}
+
+
+.hero-image img { /* L'image située dans .hero-image. */
+
+    width: 100%; /* L'image prend toute la largeur de son conteneur. */
+
+    height: 680px; /* Hauteur fixe de 680 pixels. */
+
+    object-fit: cover; /* L'image remplit toute la zone sans se déformer : elle est recadrée si nécessaire, comme un fond d'écran. Sans cela, elle serait étirée. */
+
+    display: block; /* Transforme l'image en bloc. Par défaut, une image se comporte comme du texte et un petit espace parasite apparaît en dessous. Cette ligne le supprime. */
+
+}
+
+
+.hero-caption { /* La légende sous l'image. */
+
+    display: flex; /* Aligne les textes de la légende côte à côte. */
+
+    justify-content: space-between; /* Un texte tout à gauche, l'autre tout à droite. */
+
+    padding-top: 12px; /* 12 pixels d'espace entre l'image et la légende. */
+
+    font-size: 11px; /* Très petit texte. */
+
+    text-transform: uppercase; /* Majuscules. */
+
+    letter-spacing: 1px; /* Lettres légèrement espacées. */
+
+    color: var(--gray); /* Texte gris. */
+
+}
+   .section-number { /* Une classe réutilisable : on écrit le style une seule fois, puis on l'applique à plusieurs endroits du HTML avec class="section-number". */
 
     font-size: 12px; /* Très petit texte : 12 pixels. */
 
@@ -305,7 +460,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     color: var(--red); /* Texte rouge, grâce à la variable définie dans :root. Si on change --red, tous les numéros changent aussi. */
 
 }
-.about { /* La section « À propos » (class="about"). */
+   .about { /* La section « À propos » (class="about"). */
 
     padding: 140px 8%; /* Espace intérieur : 140px en haut et en bas, 8% à gauche et à droite. */
 
@@ -377,7 +532,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     margin-bottom: 25px; /* 25 pixels d'espace sous chaque paragraphe, pour les séparer. */
 
 }
-.gallery { /* La section Galerie (class="gallery"). */
+  .gallery { /* La section Galerie (class="gallery"). */
 
     padding: 150px 8%; /* Espace intérieur : 150px en haut et en bas, 8% à gauche et à droite. */
 
@@ -418,7 +573,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
 
     color: var(--red); /* Le mot mis en valeur devient rouge. */
 
-}
+} 
 .gallery-grid { /* Le conteneur qui regroupe toutes les œuvres de la galerie. */
 
     display: grid; /* CSS Grid : les œuvres (enfants directs) se placent dans les cases d'une grille. */
@@ -582,7 +737,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     font-size: 13px; /* Petit texte. */
 
 }
-	.studio { /* La section Studio (class="studio"). */
+   .studio { /* La section Studio (class="studio"). */
 
     background: var(--black); /* Fond noir (variable --black). */
 
@@ -650,7 +805,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     font-size: 17px; /* Taille de texte légèrement plus grande que la normale. */
 
 }
-.education { /* La section Parcours / Formation (class="education"). */
+   .education { /* La section Parcours / Formation (class="education"). */
 
     padding: 150px 8%; /* Espace intérieur : 150px en haut et en bas, 8% à gauche et à droite. */
 
@@ -728,7 +883,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
 
 .timeline-item small { /* La balise <small> sert à écrire un petit texte secondaire. */
 
-    color: var(--gray); /* Texte gris, pour une information moins importante. */}	
+    color: var(--gray); /* Texte gris, pour une information moins importante. */}
 .statement { /* La section Citation (class="statement"). */
 
     background: var(--red); /* Fond rouge (variable --red). */
@@ -791,7 +946,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     letter-spacing: 2px; /* Espace légèrement les lettres. */
 
 }
-.contact { /* La section Contact (class="contact"). */
+   .contact { /* La section Contact (class="contact"). */
 
     padding: 150px 8%; /* Espace intérieur : 150px en haut et en bas, 8% à gauche et à droite. */
 
@@ -865,7 +1020,7 @@ a { /* La balise a représente les liens. Par défaut, ils sont bleus et soulign
     padding-bottom: 4px; /* 4 pixels d'espace entre le texte et le trait, pour qu'il ne soit pas collé aux lettres. */
 
 }
-footer { /* Ici, il n'y a ni point ni #, donc c'est un sélecteur de balise : il cible la balise HTML <footer> (le pied de page). */
+  footer { /* Ici, il n'y a ni point ni #, donc c'est un sélecteur de balise : il cible la balise HTML <footer> (le pied de page). */
 
     padding: 25px 6%; /* Espace intérieur : 25px en haut et en bas, 6% à gauche et à droite. */
 
@@ -882,7 +1037,7 @@ footer { /* Ici, il n'y a ni point ni #, donc c'est un sélecteur de balise : il
     letter-spacing: 1px; /* Espace légèrement les lettres pour un style plus aéré. */
 
     color: var(--gray); /* Texte gris (variable --gray), discret, pour une information secondaire. */
-    }	
+    }
 @media (max-width: 900px) { /* @media = media query : des règles qui ne s'appliquent que dans certaines conditions. Ici : seulement si la fenêtre fait 900 pixels de large ou moins (tablettes et petits écrans). C'est le principe du responsive design : la page s'adapte à la taille de l'écran. Ces règles viennent après les règles normales : en cas de conflit, elles les remplacent. */
 
 
@@ -1111,4 +1266,4 @@ footer { /* Ici, il n'y a ni point ni #, donc c'est un sélecteur de balise : il
 
     }
 
-}
+} 
